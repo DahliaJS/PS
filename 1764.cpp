@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <set>
 #include <algorithm>
 
 using namespace std;
@@ -10,43 +11,31 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(0);
 
-    vector<string> D, B, DB;
+    set<string> DB;
+    vector<string> output;
     string s;
-    int N, M;
+    int N, M, cnt=0;
     cin >> N >> M;
 
     for(int i=0; i<N; i++) {
         cin >> s;
-        D.push_back(s);
-    }
-    for(int i=0; i<M; i++) {
-        cin >> s;
-        B.push_back(s);
+        DB.insert(s);
     }
 
-    int cnt=0;
-    vector<string>::iterator iter;
-    if(N>M) {
-        for(int i=0; i<M; i++) {
-            iter = find(D.begin(), D.end(), B[i]);
-            if(iter != D.end()) {
-                DB.push_back(*iter);
-                cnt++;
-            }
+    set<string>::iterator iter;
+    for(int i=0; i<M; i++) {
+        cin >> s;
+        iter = DB.find(s);
+        if(iter != DB.end()) {
+            cnt++;
+            output.push_back(*iter);
         }
     }
-    else {
-        for(int i=0; i<N; i++) {
-            iter = find(B.begin(), B.end(), D[i]);
-            if(iter != B.end()) {
-                DB.push_back(*iter);
-                cnt++;
-            }
-        }
-    }
-    sort(DB.begin(), DB.end());
+    
+    sort(output.begin(), output.end());
     cout << cnt << '\n';
-    for(int i=0; i<DB.size(); i++)
-        cout << DB[i] << '\n';
+    for(int i=0; i<output.size(); i++)
+        cout << output[i] << '\n';
+
     return 0;
 }

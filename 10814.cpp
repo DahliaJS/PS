@@ -26,7 +26,7 @@ int main() {
     sort(members.begin(), members.end(), compare);
 
     for(int i=0; i<members.size(); i++)
-        cout << members[i].first << " " << members[i].second << '\n';
+        cout << members[i].first << ' ' << members[i].second << '\n';
 
     return 0;
 }
