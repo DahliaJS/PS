@@ -9,15 +9,14 @@ unsigned long long tile[1001] = {0, 1, 2, 3, };
 void dp(int n) {
     if(!tile[n]) dp(n-1);
 
-    tile[n] = tile[n-1] + tile[n-2];
+    tile[n] = (tile[n-1] + tile[n-2]) % 10007;
 }
 
 int main() {
-    int n;
-    cin >> n;
+    int n; cin >> n;
 
     if(n>3) dp(n);
-    cout << tile[n] % 10007;
+    cout << tile[n];
 
     return 0;
 }
