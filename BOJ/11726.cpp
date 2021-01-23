@@ -1,4 +1,4 @@
-//BOJ 11726 - 2xn 타일링 x
+//BOJ 11726 - 2xn 타일링
 
 #include <iostream>
 
