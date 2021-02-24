@@ -20,20 +20,7 @@ void dfs(int n) {
 
 int main()
 {
-    int V=1;
-    queue<int> q;
-    q.push(V);
-    visited[V] = 1;
-    while(!q.empty()) {
-        int n = q.front();
-        q.pop();
-        
-        for(auto next: graph[n]) {
-            if(visited[next]) continue;
-            visited[next] = 1;
-            q.push(next);
-        }
-    }
+    if(!(0 || 0)) cout << "ho";
 
     return 0;
 }
