@@ -1,4 +1,4 @@
-//BOJ 2644 - 촌수계산 x
+//BOJ 2644 - 촌수계산
 
 #include <iostream>
 #include <vector>
