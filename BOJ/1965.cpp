@@ -4,22 +4,23 @@
 
 using namespace std;
 
-int box[1001], cnt[1001];
+int box[1001], dp[1001];
 
 int main() {
     int n; cin >> n;
-    for(int i=0; i<n; i++) cin >> box[i];
+    for(int i=0; i<n; i++) 
+        cin >> box[i];
 
-    int r=0;
+    int cnt=0;
     for(int i=0; i<n; i++) {
-        cnt[i] = 1;
+        dp[i] = 1;
         for(int j=0; j<i; j++) {
-            if(box[i] > box[j] && cnt[j]+1 > cnt[i])
-                cnt[i] = cnt[j] + 1;
+            if(box[i] > box[j] && dp[j]+1 > dp[i])
+                dp[i] = dp[j] + 1;
         }
-        r = max(r, cnt[i]);
+        cnt = max(cnt, dp[i]);
     }
-    cout << r;
+    cout << cnt;
 
     return 0;
 }

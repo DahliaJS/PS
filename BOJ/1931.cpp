@@ -14,9 +14,9 @@ bool cmp(pair<int, int> a, pair<int, int> b) {
 
 int main() {
     int N, cnt=0;
-    vector<pair<int, int>> meeting;
-
     cin >> N;
+    
+    vector<pair<int, int>> meeting;
     for(int i=0; i<N; i++) {
         int b, e;
         cin >> b >> e;
