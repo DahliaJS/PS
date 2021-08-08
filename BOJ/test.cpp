@@ -65,9 +65,7 @@ void swap(int &a, int &b) {
 
 int main()
 {   
-    tuple<int, int, int> t;
-    t = make_tuple(1, 2, 3);
-    cout << get<1> (t) << endl;
+    if('5' > '6') cout << "oh";
     
     return 0;
 }
