@@ -1,86 +1,60 @@
-//BOJ 1018 - 체스판 다시 칠하기 틀림
+//BOJ 1018 - 체스판 다시 칠하기
 
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
-bool isOdd(int n) {
-	return n%2 ? true : false;
-}
-
-//8x8 board를 매개변수로 받고 칠해야하는 개수 세기
-int count(vector<string> &board) {
-	int cnt=0;
-
-	if(board[0][0] == 'W') {
-		for(int i=0; i<board.size(); i++) {
-			for(int j=0; j<board[i].size(); j++) {
-				if(!isOdd(i) && !isOdd(j) && board[i][j] != 'W') cnt++;
-				else if(!isOdd(i) && isOdd(j) && board[i][j] != 'B') cnt++;
-				else if(isOdd(i) && !isOdd(j) && board[i][j] != 'B') cnt++;
-				else if(isOdd(i) && isOdd(j) && board[i][j] != 'W') cnt++;
-			}
-		}
-	}
-	else {
-		for(int i=0; i<board.size(); i++) {
-			for(int j=0; j<board[i].size(); j++) {
-				if(!isOdd(i) && !isOdd(j) && board[i][j] != 'B') cnt++;
-				else if(!isOdd(i) && isOdd(j) && board[i][j] != 'W') cnt++;
-				else if(isOdd(i) && !isOdd(j) && board[i][j] != 'W') cnt++;
-				else if(isOdd(i) && isOdd(j) && board[i][j] != 'B') cnt++;
-			}
-		}
-	}
-
-	return cnt;
-}
-
-//8x8로 잘라내기
-void selectBoard(vector<string> &board, vector<string> &board64, int N, int M) {
-	string s;
-	vector<string> temp;
-	//세로 다 추가
-	for(int i=0; i<8; i++) {
-		temp.push_back(board[N+i]);
-		//가로 8개
-		s = "";
-		for(int j=M; j<M+8; j++) {
-			s += temp[i][j];
-		}
-		board64.push_back(s);
-	}
-}
+vector<string> board, boardW, boardB;
 
 int main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(0);
-
 	int N, M;
 	cin >> N >> M;
 
-	//입력
-	vector<string> board;
-	string s;
-	for(int i=0; i<N; i++) {
+	for (int i=0; i<N; i++) 
+	{
+		string s;
 		cin >> s;
 		board.push_back(s);
 	}
 
-	vector<string> board64;
-	int min = 100;
-
-	for(int i=0; i<N-7; i++) {
-		for(int j=0; j<M-7; j++) {
-			selectBoard(board, board64, i, j);
-			if(min > count(board64))
-				min = count(board64);
-
-			board64.clear();
+	string w="WBWBWBWB", b="BWBWBWBW";
+	for (int i=0; i<8; i++)
+	{
+		if (i % 2)
+		{
+			boardW.push_back(b);
+			boardB.push_back(w);
+		}
+		else
+		{
+			boardW.push_back(w);
+			boardB.push_back(b);
 		}
 	}
-	cout << min;
+
+	int cntW, cntB;
+	int mn = 1234567;
+	for (int i=0; i<N-7; i++)
+	{
+		for (int j=0; j<M-7; j++)
+		{
+			cntW=0;
+			cntB=0;
+			for (int k=0; k<8; k++)
+			{
+				for (int l=0; l<8; l++)
+				{
+					if (board[i+k][j+l] != boardW[k][l]) cntW++;
+					if (board[i+k][j+l] != boardB[k][l]) cntB++;
+				}
+			}
+			if (mn > cntW) mn = cntW;
+			if (mn > cntB) mn = cntB;
+		}
+	}
+	
+	cout << mn;
 
 	return 0;
 }
