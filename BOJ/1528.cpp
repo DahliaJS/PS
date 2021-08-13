@@ -30,7 +30,7 @@ int main() {
         int n = q.front();
         q.pop();
 
-        for (auto next: )
+        for (auto next: 그래프>???)
     }
 
     return 0;
