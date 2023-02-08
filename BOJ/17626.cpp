@@ -8,7 +8,7 @@ int dp[50001];
 
 int main() {
     int n; cin >> n;
-    fill_n(dp, 50000, 123456789);
+    fill_n(dp, 50001, 123456789);
     for(int i=1; i*i<=n; i++)
         dp[i*i] = 1;
 
